@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('ssn/', include('ssn.urls')),
+    path('diagnoseasy/', include('diagnoseasy.urls')),
 ]

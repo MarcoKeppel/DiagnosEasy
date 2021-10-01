@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 import csv
+import json
 
 # Create your views here.
 
@@ -16,7 +17,9 @@ def index(request):
 @csrf_exempt
 def get_info(request):
 
-    person_cf = request.POST.get('cf', '')
+    request_body = json.loads(request.body)
+    person_cf = request_body['cf']
+    print (person_cf)
 
     person_info = {}
     with open(os.path.join(settings.BASE_DIR, 'ssn/db/ssn_dataset.csv'), mode='r') as f:
@@ -26,6 +29,5 @@ def get_info(request):
             if row['cf'].lower() == person_cf.strip().lower():
                 person_info = row
                 break
-        print(person_info['cf'])
 
     return JsonResponse(person_info)
