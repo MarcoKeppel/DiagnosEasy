@@ -1,0 +1,7 @@
+{
+  "name": "DiagnosEasy",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
