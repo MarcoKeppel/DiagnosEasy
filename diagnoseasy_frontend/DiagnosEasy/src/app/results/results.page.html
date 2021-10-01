@@ -1,0 +1,39 @@
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>DiagnosEasy</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card style="float: left; margin-right: 3vw;">
+      <ion-img src="../assets/download.png" alt="Immagine paziente"></ion-img>
+      <ion-card-header>
+        <ion-card-title>Nome Cognome paziente</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ul>
+          <li>Età: </li>
+          <li>Sesso: </li>
+          <li>Data di nascita: </li>
+        </ul>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-list>
+      <ion-list-header>Lista di possibili patologie rilevate</ion-list-header>
+      <ion-item lines="full">
+        <a>Rischio di diabete:</a>
+        <a class="rischio">481</a>
+      </ion-item>
+      <ion-item lines="full">
+        <a>Rischio di cancro:</a>
+        <a class="rischio">481</a>
+      </ion-item>
+      <ion-item lines="full">
+        <a>Rischio di morire:</a>
+        <a class="rischio">481</a>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
