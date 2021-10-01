@@ -26,6 +26,6 @@ def get_info(request):
             if row['cf'].lower() == person_cf.strip().lower():
                 person_info = row
                 break
-        print(person_info)
+        print(person_info['cf'])
 
     return JsonResponse(person_info)
