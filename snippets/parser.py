@@ -28,7 +28,7 @@ def get_relevant_data():
         
 
         diabetic_patients.append(patient_data)
-    '''
+    
     total_cholesterol = 'x0lp16'
     cholesterol_HDL = 'x0lp17'
     systolic_BP = 'x0bp01'
@@ -36,8 +36,9 @@ def get_relevant_data():
 
     coronary_heart_disease_patient_data = [float(row[age]),row[total_cholesterol],row[cholesterol_HDL],row[systolic_BP], row[treated_for_blood_pressure], row[smoking],row[age]]
 
-    '''
+    coronary_heart_disease_patient_data[0] = math.log(coronary_heart_disease_patient_data[0])
 
+    
     #coronary_heart_disease = 'x0mi08'
     diabetic_patients, diabetic_multipliers = normalize_diabetics_parameters(diabetic_patients)
 
