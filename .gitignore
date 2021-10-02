@@ -1,5 +1,7 @@
 .idea/
 venv/
+generated_variables.csv
+
 # Django
 *.log
 *.pot

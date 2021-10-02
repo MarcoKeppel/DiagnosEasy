@@ -28,51 +28,51 @@
   text-decoration: none;
 }
 
-ion-item {
-  --border-color: #aec4c7;
+#container ion-item {
+  /*--border-color: #aec4c7;
   --border-width: 5px;
   --border-radius: 0px;
   --border-style: solid;
-  margin-top: 3vh;
+  margin-top: 3vh;*/
 }
 
-ion-list-header{
+#container ion-list-header {
   border-bottom: 5px #aec4c7 dashed;
 }
 
-ion-list{
+#container ion-list {
   border: 8px #aec4c7 ridge;
   border-radius: 5px;
 }
 
-ion-card{
+#container ion-card {
   width: 30%;
   margin: auto;
   margin-top: 3vh;
 }
 
-ion-button{
+#container ion-button {
   padding: 5px;
 }
 
-ul{
+#container ul {
   text-align: left;
 }
 
-ion-list{
+#container ion-list {
   margin-top: 3vh;
 }
 
-.rischio{
+#container .rischio {
   width: 50%;
   text-align: center;
 }
 
-a{
+#container a {
   color: black;
 }
 
-ion-img{
+#container ion-img {
   max-width: 12vw;
   max-height: 12vw;
   margin:auto;

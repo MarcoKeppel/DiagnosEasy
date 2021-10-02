@@ -5,7 +5,6 @@
     <form
       [formGroup]="cfForm"
       (ngSubmit)="onSubmit()"
-      action="/results"
       class="ion-padding">
       <ion-card class="transparent-bg ion-padding" >
         <ion-label position="floating">Codice Fiscale: </ion-label>
@@ -14,4 +13,28 @@
       <ion-button type="submit" size="large" strong="true" class="ion-padding">Cerca</ion-button>
     </form>
   </div>
+
+  <div id="mobile" *ngIf="platform.is('mobile')">
+
+    <ion-card class="acrylic">
+      <ion-card-header>
+        <ion-card-title>DiagnosEasy</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card class="acrylic">
+      <form
+        [formGroup]="cfForm"
+        (ngSubmit)="onSubmit()"
+        class="ion-padding">
+        <ion-item class="ion-padding">
+          <ion-label position="floating">Tax code:</ion-label>
+          <ion-input id="cf" formControlName="cf"></ion-input>
+        </ion-item>
+        <ion-button expand="block" type="submit" strong="true" class="ion-padding" color="secondary">Search</ion-button>
+      </form>
+    </ion-card>
+
+  </div>
+
 </ion-content>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendCommunicationService } from '../services/backend-communication.service';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-results',
@@ -13,11 +14,11 @@ export class ResultsPage implements OnInit {
   openCards = [false];
 
   constructor(
+    public platform: Platform,
     public backend: BackendCommunicationService,
   ) { }
 
   ngOnInit() {
-
     // this.backend.getInfo().subscribe(info => {
     //
     //   this.backend.getCorrelations(info).subscribe(result => {

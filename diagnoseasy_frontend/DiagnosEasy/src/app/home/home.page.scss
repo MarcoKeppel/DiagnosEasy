@@ -28,24 +28,24 @@
   text-decoration: none;
 }
 
-ion-item {
+#container ion-item {
   --border-color: #aec4c7;
   --border-width: 8px;
   --border-radius: 8px;
   --border-style: ridge;
 }
 
-ion-card{
+#container ion-card {
   width: 50%;
   margin: auto;
   margin-top: 5vh;
 }
 
-ion-button{
+#container ion-button {
   padding: 5px;
 }
 
-ion-input{
+#container ion-input {
   text-align: center;
 }
 
