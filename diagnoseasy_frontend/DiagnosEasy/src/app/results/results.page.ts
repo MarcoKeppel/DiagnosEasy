@@ -24,6 +24,7 @@ export class ResultsPage implements OnInit {
       this.backend.getCorrelations(info).subscribe(result => {
 
         this.results = result;
+        console.log(result);
 
         this.pageIsReady = true;
 
