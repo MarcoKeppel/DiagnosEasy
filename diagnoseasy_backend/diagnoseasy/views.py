@@ -7,7 +7,7 @@ import json
 import math
 import csv
 import time
-from diagnoseasy_backend.settings import get_relevant_data,kb_diabetic_patients_list,kb_diabetic_multipliers,kb_coronary_heart_disease_patients_list,kb_diabetic_multipliers
+from diagnoseasy_backend.settings import get_relevant_data,kb_diabetic_patients_list,kb_diabetic_multipliers,kb_coronary_heart_disease_patients_list,kb_coronary_heart_disease_multipliers
 
 @csrf_exempt
 def get_correlations(request):
@@ -18,6 +18,7 @@ def get_correlations(request):
     print(person_info)
 
     # Could use some library, but it's 4:30AM so I'm not doing that
+
     person_data = []
     for f in person_info:
         person_data.append(person_info[f])
@@ -147,7 +148,7 @@ def diagnose(patient):
 
     diabetic_score = get_score(k_diabetic_patients_list[0], k_diabetic_multipliers, kb_diabetic_patients_list,
                                kb_diabetic_multipliers)
-    coronary_heart_disease_score = get_score(k_coronary_heart_disease_patients_list[0], k_diabetic_multipliers, kb_coronary_heart_disease_patients_list, kb_diabetic_multipliers)
+    coronary_heart_disease_score = get_score(k_coronary_heart_disease_patients_list[0], k_coronary_heart_disease_multipliers, kb_coronary_heart_disease_patients_list, kb_coronary_heart_disease_multipliers)
     #print("WARNING - Diabetic score: " + str(diabetic_score))
     #print("WARNING - Coronary Heart Disease score: " + str(coronary_heart_disease_score))
 
