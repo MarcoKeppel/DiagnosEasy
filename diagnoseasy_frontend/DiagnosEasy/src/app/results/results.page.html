@@ -14,15 +14,15 @@
 
     <ion-card class="transparent-bg" style="float: left; margin-right: 3vw;">
       <br>
-      <img src="/../assets/imgs/person.jpeg" alt="Immagine paziente">
+      <img src="/../assets/imgs/man.jpg" alt="Patient image">
       <ion-card-header>
         <ion-card-title>{{name}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ul>
-          <li><strong>Età: </strong> </li>
-          <li><strong>Sesso: </strong>: {{gender}}</li>
-          <li><strong>Data di nascita: </strong>{{birthday}}</li>
+          <li><strong>Age: </strong>{{age}}</li>
+          <li><strong>Gender: </strong>{{gender}} </li>
+          <li><strong>Birthday: </strong>{{birthday}}</li>
         </ul>
       </ion-card-content>
     </ion-card>
@@ -31,98 +31,92 @@
       <section class="disease-section">
         <ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
           <ion-card-header>
-            <ion-card-title>Rischio di diabete:     48%</ion-card-title>
+            <ion-card-title>Diabetes likelyhood:     {{diabetes_likelyhood * 100}}%</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <br>
-            <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
+            <ion-progress-bar color="danger" value="{{diabetes_likelyhood}}"></ion-progress-bar>
 
             <div *ngIf="openCards[0]" class="align-left">
               <br>
-              Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
-            </div>
-          </ion-card-content>
-        </ion-card><ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
-          <ion-card-header>
-            <ion-card-title>Rischio di diabete:     48%</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <br>
-            <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
-
-            <div *ngIf="openCards[0]" class="align-left">
+              <ul class="medData">
+                <li>BMI: <i>{{bmi}}</i></li>
+                <li>Family History: <i>{{family_history}}</i></li>
+                <li>Antihypertensive medication: <i>{{antihypertensive_medication}}</i></li>
+                <li>Prescribed Steroids: <i>{{prescribed_steroids}}</i></li>
+                <li>Smoking History: <i>{{smoking_history}}</i></li>
+              </ul>
               <br>
               Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
-            </div>
-          </ion-card-content>
-        </ion-card><ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
-          <ion-card-header>
-            <ion-card-title>Rischio di diabete:     48%</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <br>
-            <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
-
-            <div *ngIf="openCards[0]" class="align-left">
-              <br>
-              Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
-            </div>
-          </ion-card-content>
-        </ion-card><ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
-          <ion-card-header>
-            <ion-card-title>Rischio di diabete:     48%</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <br>
-            <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
-
-            <div *ngIf="openCards[0]" class="align-left">
-              <br>
-              Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
-            </div>
-          </ion-card-content>
-        </ion-card><ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
-        <ion-card-header>
-          <ion-card-title>Rischio di diabete:     48%</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <br>
-          <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
-
-          <div *ngIf="openCards[0]" class="align-left">
-            <br>
-            Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
-          </div>
-        </ion-card-content>
-      </ion-card>
-        <ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
-          <ion-card-header>
-            <ion-card-title>Rischio di diabete:     48%</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <br>
-            <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
-
-            <div *ngIf="openCards[0]" class="align-left">
-              <br>
-              Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
+              <br><br>
+              <strong>Additional symptoms to check:</strong>
+                <ul>
+                  <li>Lose weight without trying</li>
+                  <li>Have blurry vision</li>
+                  <li>Have numb or tingling hands or feet</li>
+                  <li>Have very dry skin</li>
+                  <li>Have more infections than usual</li>
+                </ul>
             </div>
           </ion-card-content>
         </ion-card>
-        <ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
-          <ion-card-header>
-            <ion-card-title>Rischio di diabete:     48%</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <br>
-            <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
-
-            <div *ngIf="openCards[0]" class="align-left">
+        <ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(1)">
+            <ion-card-header>
+              <ion-card-title>Coronal hearth disease:     {{coronary_heart_disease_likelyhood * 100}}%</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
               <br>
-              Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
-            </div>
-          </ion-card-content>
-        </ion-card>
+              <ion-progress-bar color="danger" value="{{coronary_heart_disease_likelyhood}}"></ion-progress-bar>
+
+              <div *ngIf="openCards[1]" class="align-left">
+                <br>
+                  <ul class="medData">
+                    <li>Blood pressure medicine: <i>{{blood_preassure_medicine}}</i></li>
+                    <li>HDL cholesterol: <i>{{HDL_choleserol}} mg/dL</i></li>
+                    <li>Smoker: <i>{{smoker}}</i></li>
+                    <li>Systolic BP: <i>{{systolic_bp}}  mm/Hg</i></li>
+                    <li>Total Cholesterol: <i>{{total_cholesterol}} mg/dL</i></li>
+                  </ul>
+                <br>
+                Angina, or chest pain and discomfort, is the most common symptom of CAD. Angina can happen when too much plaque builds up inside arteries, causing them to narrow. Narrowed arteries can cause chest pain because they can block blood flow to your heart muscle and the rest of your body.
+                <br><br>
+                <strong>Additional symptoms to check:</strong>
+                <ul>
+                  <li>Weakness, light-headedness</li>
+                  <li>Pain or discomfort in the arms or shoulder</li>
+                  <li>Shortness of breath</li>
+                  <li>Nausea</li>
+                </ul>
+              </div>
+            </ion-card-content>
+          </ion-card>
+          <ion-card class="transparent-bg diseases" style="float: right;">
+              <ion-card-header>
+                <ion-card-title>Parkinson's Disease risk:  13.37%</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <br>
+                <ion-progress-bar color="warning" value="0.13"></ion-progress-bar>
+              </ion-card-content>
+            </ion-card>
+          <ion-card class="transparent-bg diseases" style="float: right;">
+                <ion-card-header>
+                  <ion-card-title>Lung cancer risk:    9%</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <br>
+                  <ion-progress-bar [color]="" value="0.09"></ion-progress-bar>
+                </ion-card-content>
+              </ion-card>
+              <ion-card class="transparent-bg diseases" style="float: right;">
+                  <ion-card-header>
+                    <ion-card-title>Liver failure:    2%</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <br>
+                    <ion-progress-bar [color]="" value="0.02"></ion-progress-bar>
+                  </ion-card-content>
+                </ion-card>
       </section>
     </div>
 

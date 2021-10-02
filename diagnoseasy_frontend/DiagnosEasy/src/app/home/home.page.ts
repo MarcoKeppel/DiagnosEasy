@@ -27,6 +27,7 @@ export class HomePage {
     let cf = this.cfForm.value.cf;
     console.log(cf);
     this.backend.cf = cf;
+    console.log(this.backend.cf);
     this.router.navigate(['/results'], { state: { data: { cf: cf } } });
   }
 }

@@ -46,7 +46,7 @@
 }
 
 #container ion-card {
-  width: 30%;
+  //width: 30%;
   margin: auto;
   margin-top: 3vh;
 }
@@ -154,13 +154,17 @@ ion-card-title{
 }
 
 .scroll{
-  width: 60vw;
-  display: block;
-  overflow-y: scroll;
-  max-height: 70vh;
   padding-right: 2vw;
+  overflow-y: scroll;
+  max-height: 60vh;
 }
 
-.disease-section ion-card{
-  display: block;
+ul.medData{
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+
+    li{
+      padding-right: 2px;
+    }
 }

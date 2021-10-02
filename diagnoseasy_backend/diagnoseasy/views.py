@@ -152,7 +152,7 @@ def diagnose(patient):
     #print("WARNING - Diabetic score: " + str(diabetic_score))
     #print("WARNING - Coronary Heart Disease score: " + str(coronary_heart_disease_score))
 
-        data = {}
+    data = {}
     person = k_diabetic_patients[0]
     if person['Sex'] == 0:
         person['Sex'] = 'Male'
@@ -186,6 +186,11 @@ def diagnose(patient):
 
     data['info_diabetes'] = person
     person = k_coronary_heart_disease_patients[0]
+    if person['Sex'] == 0:
+        person['Sex'] = 'Male'
+    else:
+        person['Sex'] = 'Female'
+
     if person['Smoker'] == 0:
         person['Smoker'] = 'Non-smoker'
     else:
