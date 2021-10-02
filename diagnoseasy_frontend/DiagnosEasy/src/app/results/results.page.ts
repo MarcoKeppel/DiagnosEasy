@@ -9,8 +9,9 @@ import { Platform } from '@ionic/angular';
 })
 export class ResultsPage implements OnInit {
 
-  pageIsReady = false;
+  pageIsReady = true;
   results = [];
+  openCards = [false];
 
   constructor(
     public platform: Platform,
@@ -18,18 +19,21 @@ export class ResultsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    this.backend.getInfo().subscribe(info => {
-
-      this.backend.getCorrelations(info).subscribe(result => {
-
-        this.results = result;
-        console.log(result);
-
-        this.pageIsReady = true;
-
-      });
-    });
+    // this.backend.getInfo().subscribe(info => {
+    //
+    //   this.backend.getCorrelations(info).subscribe(result => {
+    //
+    //     this.results = result;
+    //
+    //     this.pageIsReady = true;
+    //
+    //   });
+    // });
   }
+
+  toggleCard(index: number){
+    this.openCards[index] = ! this.openCards[index];
+  }
+
 
 }

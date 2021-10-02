@@ -49,10 +49,37 @@
   text-align: center;
 }
 
-#mobile {
+.background-img{
+  --background: url("/../assets/imgs/bg.jpg") no-repeat;
+  background-size: 100% auto;
+}
 
-  ion-item {
+.title{
+  font-family: 'Righteous', cursive;
+  font-size: 6rem;
+}
 
-    --ion-background-color: rgba($color: #ffffff, $alpha: 0);
-  }
+.transparent-bg{
+  //opacity: 80%;
+  background: rgba(255, 255, 255, .8)
+}
+
+ion-label{
+  font-size: 1.4rem;
+}
+
+ion-input{
+  font-size: 1.2rem;
+}
+
+ion-card{
+  width: 40vw;
+}
+
+ion-button{
+  margin-top: 10px;
+  width: 40vw;
+  padding-left: 0;
+  padding-right: 0;
+  --background: #66bb6a
 }

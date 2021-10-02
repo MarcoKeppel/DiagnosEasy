@@ -1,101 +1,130 @@
-<ion-header *ngIf="platform.is('mobile')">
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Results</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="background-img">
 
   <ion-spinner *ngIf="!pageIsReady"></ion-spinner>
 
-  <div id="container" *ngIf="pageIsReady && !platform.is('mobile')">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>DiagnosEasy</ion-card-title>
-      </ion-card-header>
-    </ion-card>
+  <div id="container" *ngIf="pageIsReady">
+<!--    <ion-card>-->
+<!--      <ion-card-header>-->
+<!--        <ion-card-title>DiagnosEasy</ion-card-title>-->
+<!--      </ion-card-header>-->
+<!--    </ion-card>-->
+    <br class="title-spacer">
+    <div class="title">DiagnosEasy</div>
+    <br class="title-spacer">
 
-    <ion-card style="float: left; margin-right: 3vw;">
-      <ion-img src="../assets/download.png" alt="Immagine paziente"></ion-img>
+    <ion-card class="transparent-bg" style="float: left; margin-right: 3vw;">
+      <br>
+      <img src="/../assets/imgs/person.jpeg" alt="Immagine paziente">
       <ion-card-header>
-        <ion-card-title>Nome Cognome paziente</ion-card-title>
+        <ion-card-title>Hikaru Nakamura</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ul>
-          <li>Età: </li>
-          <li>Sesso: </li>
-          <li>Data di nascita: </li>
+          <li><strong>Età: </strong>  </li>
+          <li><strong>Sesso: </strong>: Troppo</li>
+          <li><strong>Data di nascita: </strong></li>
         </ul>
       </ion-card-content>
     </ion-card>
 
-    <ion-list>
-        <ion-list-header style="font-size: 1.5em;">List of possible diseases</ion-list-header>
-        <ion-item lines="full">
-          <ion-label>
-            Risk of diabetes
-            <ion-progress-bar [value]="results['diabetes'] / 100" class="ion-margin-vertical"></ion-progress-bar>
-          </ion-label>
-        </ion-item>
-        <ion-item lines="full">
-          <ion-label>
-            Risk of coronary heart disease
-            <ion-progress-bar [value]="results['coronary_heart_disease'] / 100" class="ion-margin-vertical"></ion-progress-bar>
-          </ion-label>
-        </ion-item>
-        <ion-item lines="full">
-          <ion-label>
-            Rischio di morire:
-            <ion-progress-bar value="0.8" class="ion-margin-vertical"></ion-progress-bar>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-  </div>
+    <ion-scroll scrollY="true">
+      <section class="disease-section">
+        <ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
+          <ion-card-header>
+            <ion-card-title>Rischio di diabete:     48%</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <br>
+            <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
 
-  <div id="mobile" *ngIf="pageIsReady && platform.is('mobile')">
+            <div *ngIf="openCards[0]" class="align-left">
+              <br>
+              Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
+            </div>
+          </ion-card-content>
+        </ion-card><ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
+          <ion-card-header>
+            <ion-card-title>Rischio di diabete:     48%</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <br>
+            <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
 
-    <ion-card class="acrylic">
-      <!--<ion-img src="../assets/download.png" alt="Immagine paziente"></ion-img>-->
-      <ion-card-header>
-        <ion-card-title>Nome Cognome paziente</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ul>
-          <li>Age: </li>
-          <li>Sex: </li>
-          <li>Birth date: </li>
-        </ul>
-      </ion-card-content>
-    </ion-card>
+            <div *ngIf="openCards[0]" class="align-left">
+              <br>
+              Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
+            </div>
+          </ion-card-content>
+        </ion-card><ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
+          <ion-card-header>
+            <ion-card-title>Rischio di diabete:     48%</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <br>
+            <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
 
-    <ion-card class="acrylic">
+            <div *ngIf="openCards[0]" class="align-left">
+              <br>
+              Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
+            </div>
+          </ion-card-content>
+        </ion-card><ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
+          <ion-card-header>
+            <ion-card-title>Rischio di diabete:     48%</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <br>
+            <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
 
-      <ion-list>
-        <ion-list-header style="font-size: 1.5em;">List of possible diseases</ion-list-header>
-        <ion-item lines="full">
-          <ion-label>
-            Risk of diabetes
-            <ion-progress-bar [value]="results['diabetes'] / 100" class="ion-margin-vertical"></ion-progress-bar>
-          </ion-label>
-        </ion-item>
-        <ion-item lines="full">
-          <ion-label>
-            Risk of coronary heart disease
-            <ion-progress-bar [value]="results['coronary_heart_disease'] / 100" class="ion-margin-vertical"></ion-progress-bar>
-          </ion-label>
-        </ion-item>
-        <ion-item lines="full">
-          <ion-label>
-            Rischio di morire:
-            <ion-progress-bar value="0.8" class="ion-margin-vertical"></ion-progress-bar>
-          </ion-label>
-        </ion-item>
-      </ion-list>
+            <div *ngIf="openCards[0]" class="align-left">
+              <br>
+              Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
+            </div>
+          </ion-card-content>
+        </ion-card><ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
+        <ion-card-header>
+          <ion-card-title>Rischio di diabete:     48%</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <br>
+          <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
 
-    </ion-card>
+          <div *ngIf="openCards[0]" class="align-left">
+            <br>
+            Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
+          </div>
+        </ion-card-content>
+      </ion-card>
+        <ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
+          <ion-card-header>
+            <ion-card-title>Rischio di diabete:     48%</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <br>
+            <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
+
+            <div *ngIf="openCards[0]" class="align-left">
+              <br>
+              Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
+            </div>
+          </ion-card-content>
+        </ion-card>
+        <ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
+          <ion-card-header>
+            <ion-card-title>Rischio di diabete:     48%</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <br>
+            <ion-progress-bar [color]="" value="0.5"></ion-progress-bar>
+
+            <div *ngIf="openCards[0]" class="align-left">
+              <br>
+              Diabetes symptoms vary depending on how much your blood sugar is elevated. Some people, especially those with prediabetes or type 2 diabetes, may sometimes not experience symptoms. In type 1 diabetes, symptoms tend to come on quickly and be more severe.
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </section>
+    </ion-scroll>
 
   </div>
 
