@@ -144,7 +144,7 @@ def diagnose(patient):
                              person['Smoker'], person['ln(Age) x ln(Total cholesterol)'], person['ln(Age) x Smoker'],
                                                 person['Sex'], person['Coronary heart disease']] for person in k_coronary_heart_disease_patients ]
     print("[+] Loaded known patients")
-    
+
     diabetic_score = get_score(k_diabetic_patients_list[0], k_diabetic_multipliers, kb_diabetic_patients_list,
                                kb_diabetic_multipliers)
     coronary_heart_disease_score = get_score(k_coronary_heart_disease_patients_list[0], k_diabetic_multipliers, kb_coronary_heart_disease_patients_list, kb_diabetic_multipliers)
