@@ -41,15 +41,16 @@ def normalize_diabetics_parameters(diabetic_patients):
         tmp_mult.append(0.063)
 
         # BMI
-        tmp_mult.append(1)
+        
+        
         if person['BMI kg/m^2'] < 25:
-            person['BMI kg/m^2'] = 0
+            tmp_mult.append(0)            
         elif person['BMI kg/m^2'] >= 25 and person['BMI kg/m^2'] < 27.5:
-            person['BMI kg/m^2'] = 0.699
+            tmp_mult.append(0.699)
         elif person['BMI kg/m^2'] >= 27.5 and person['BMI kg/m^2'] < 30:
-            person['BMI kg/m^2'] = 1.97
+            tmp_mult.append(1.97)
         else:
-            person['BMI kg/m^2'] = 2.518
+            tmp_mult.append(2.518)
 
         # Family history
         tmp_mult.append(1)
@@ -87,8 +88,6 @@ def normalize_coronary_heart_parameters(coronary_heart_disease_patients):
             multipliers.append(female_mult)
 
     return coronary_heart_disease_patients, multipliers
-
-
 
 def get_relevant_data(reader):
     diabetic_patients = []
@@ -146,7 +145,7 @@ def get_relevant_data(reader):
             'HDL cholesterol mg/dL': int(row[cholesterol_HDL]),
             'Systolic BP mm Hg': int(row[systolic_BP]),
             'Blood pressure being treated with medicines': int(row[treated_for_blood_pressure]),
-            'Smoker': int(row[smoking]),
+            'Smoker': int(row[smoking]) - 1,
             'Sex': int(row[sex]) - 1,
             'Coronary heart disease': int(row[coronary_heart_disease]),
             'ln(Age) x ln(Total cholesterol)': 0,

@@ -152,7 +152,7 @@ def diagnose(patient):
     #print("WARNING - Diabetic score: " + str(diabetic_score))
     #print("WARNING - Coronary Heart Disease score: " + str(coronary_heart_disease_score))
 
-    data = {}
+        data = {}
     person = k_diabetic_patients[0]
     if person['Sex'] == 0:
         person['Sex'] = 'Male'
@@ -186,7 +186,22 @@ def diagnose(patient):
 
     data['info_diabetes'] = person
     person = k_coronary_heart_disease_patients[0]
+    if person['Smoker'] == 0:
+        person['Smoker'] = 'Non-smoker'
+    else:
+        person['Smoker'] = 'Current smoker'
+
+    person['Age'] = math.e ** person['Age']
+    person['Total cholesterol mg/dL'] = math.e ** person['Total cholesterol mg/dL']
+    person['HDL cholesterol mg/dL'] = math.e ** person['HDL cholesterol mg/dL']
+
+    if person['Blood pressure being treated with medicines'] == 0:
+        person['Blood pressure being treated with medicines'] = 'No'
+    else:
+        person['Blood pressure being treated with medicines'] = 'Yes'
+
     data['info_coronary_heart_disease'] = person
+    
     data['diabetes'] = diabetic_score
     data['coronary_heart_disease'] = coronary_heart_disease_score
 

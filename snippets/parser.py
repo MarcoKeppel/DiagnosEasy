@@ -5,128 +5,6 @@ import math
 import random
 import csv
 
-def get_relevant_data(reader):
-    diabetic_patients = []
-
-    # Diabetic data
-    age = 'x0_age'
-    bmi = 'x0an03a'
-    sex = 'x0_sex'
-    diabetes = 'x0md030'
-    antihypertensive_medication =   1 #random.randint(0,1)
-    prescribed_steroids = 1 # random.randint(0,1)
-    smoking = 'x0sm00'
-    family_history = 0.753 #random.choice([0,0.728,0.753])
-
-    coronary_heart_disease_patients = []
-    total_cholesterol = 'x0lp16'
-    cholesterol_HDL = 'x0lp17'
-    systolic_BP = 'x0bp01'
-    treated_for_blood_pressure = 'x0bl02'
-    coronary_heart_disease = 'x0mi08'
-
-    for row in reader:
-        '''
-        diabetic_patient_data = [int(row[sex])-1, 
-                                antihypertensive_medication,
-                                prescribed_steroids,
-                                float(row[age]),
-                                float(row[bmi]),
-                                family_history,
-                                int(row[smoking])-1, 
-                                int(row[diabetes])]
-        '''
-
-        diabetic_patient_data = {
-            'Sex' : int(row[sex])-1,
-            'Prescribed antihypertensive medication' : antihypertensive_medication,
-            'Prescribed steroids' : prescribed_steroids,
-            'Age' : float(row[age]),
-            'BMI kg/m^2' : float(row[bmi]),
-            'Family history' : family_history,
-            'Smoking history' : int(row[smoking])-1, 
-            'Diabetic' : int(row[diabetes])
-        }
-        
-        insert = True
-        for x in diabetic_patient_data.keys():
-            if diabetic_patient_data[x] < 0:
-                insert = False
-                break
-        
-        if insert:
-            diabetic_patients.append(diabetic_patient_data)
-        
-        '''
-        coronary_heart_disease_patient_data = [float(row[age]),
-                                                int(row[total_cholesterol]),
-                                                int(row[cholesterol_HDL]),
-                                                int(row[systolic_BP]), 
-                                                int(row[treated_for_blood_pressure]), 
-                                                int(row[smoking]),
-                                                0,
-                                                0,
-                                                0,
-                                                int(row[sex])-1,
-                                                int(row[coronary_heart_disease])]
-        '''
-        coronary_heart_disease_patient_data = {
-            'Age' : float(row[age]),
-            'Total cholesterol mg/dL' : int(row[total_cholesterol]),
-            'HDL cholesterol mg/dL' : int(row[cholesterol_HDL]),
-            'Systolic BP mm Hg' : int(row[systolic_BP]),
-            'Blood pressure being treated with medicines' : int(row[treated_for_blood_pressure]),
-            'Smoker' : int(row[smoking]),
-            'Sex' : int(row[sex])-1,
-            'Coronary heart disease': int(row[coronary_heart_disease]),
-            'ln(Age) x ln(Total cholesterol)':0,
-            'ln(Age) x Smoker':0,
-            'ln(Age) x ln(Age)':0
-        }
-
-        
-        insert = True
-        for x in coronary_heart_disease_patient_data.keys():
-            if coronary_heart_disease_patient_data[x] < 0:
-                insert = False
-                break
-        if insert:
-            if coronary_heart_disease_patient_data['Blood pressure being treated with medicines'] == 2:
-                coronary_heart_disease_patient_data['Blood pressure being treated with medicines'] = 0
-
-            if coronary_heart_disease_patient_data['Smoker'] == 2:
-                coronary_heart_disease_patient_data['Smoker'] = 0
-            else : 
-                coronary_heart_disease_patient_data['Smoker'] = 1
-
-            coronary_heart_disease_patient_data['ln(Age) x Smoker'] = math.log(coronary_heart_disease_patient_data['Age']) * coronary_heart_disease_patient_data['Smoker']
-            
-            if coronary_heart_disease_patient_data['Age'] > 70 and coronary_heart_disease_patient_data['Sex'] == 0:
-                coronary_heart_disease_patient_data['ln(Age) x Smoker'] = math.log(70) * coronary_heart_disease_patient_data[5]
-            if coronary_heart_disease_patient_data['Age'] > 78 and coronary_heart_disease_patient_data['Sex'] == 1:
-                coronary_heart_disease_patient_data['ln(Age) x Smoker'] = math.log(78) * coronary_heart_disease_patient_data[5]
-            
-
-            coronary_heart_disease_patient_data['Age'] = math.log(coronary_heart_disease_patient_data['Age'])
-            coronary_heart_disease_patient_data['Total cholesterol mg/dL'] = math.log(coronary_heart_disease_patient_data['Total cholesterol mg/dL'])
-            coronary_heart_disease_patient_data['HDL cholesterol mg/dL'] = math.log(coronary_heart_disease_patient_data['HDL cholesterol mg/dL'])
-            coronary_heart_disease_patient_data['Systolic BP mm Hg'] = math.log(coronary_heart_disease_patient_data['Systolic BP mm Hg'])
-            coronary_heart_disease_patient_data['ln(Age) x ln(Total cholesterol)'] = coronary_heart_disease_patient_data['Age'] * coronary_heart_disease_patient_data['Total cholesterol mg/dL']
-            
-            
-            coronary_heart_disease_patient_data['ln(Age) x ln(Age)'] = coronary_heart_disease_patient_data['Age'] ** 2
-            
-            
-            coronary_heart_disease_patients.append(coronary_heart_disease_patient_data)
-    
-    
-    diabetic_patients, diabetic_multipliers = normalize_diabetics_parameters(diabetic_patients)
-    
-    
-    coronary_heart_disease_patients, coronary_heart_disease_multipliers = normalize_coronary_heart_parameters(coronary_heart_disease_patients)
-
-    return diabetic_patients, diabetic_multipliers, coronary_heart_disease_patients, coronary_heart_disease_multipliers
-
 def mdcalc_probability_diabetes(diabetic_patient,diabetic_multiplier):
     exp = -6.322
     for i in range(0,len(diabetic_multiplier)):        
@@ -148,41 +26,41 @@ def mdcalc_probability_heart_disease(coronary_heart_disease_patient,coronary_hea
     return P
 
 
+
 # https://www.mdcalc.com/cambridge-diabetes-risk-score#evidence
 def normalize_diabetics_parameters(diabetic_patients):
-    
     multipliers = []
-    
+
     for person in diabetic_patients:
-        
+
         tmp_mult = []
-        
+
         # Gender
         tmp_mult.append(-0.879)
 
         # Prescribed antihypertensive medication
         tmp_mult.append(1.222)
-        
-        
+
         # Prescribed steroids
         tmp_mult.append(2.191)
-        
-        #Age
+
+        # Age
 
         tmp_mult.append(0.063)
 
-        #BMI
-        tmp_mult.append(1)
+        # BMI
+        
+        
         if person['BMI kg/m^2'] < 25:
-            person['BMI kg/m^2'] = 0
-        elif person['BMI kg/m^2'] >= 25 and person[4] <27.5:
-            person['BMI kg/m^2'] = 0.699
-        elif person['BMI kg/m^2'] >= 27.5 and person[4] < 30:
-            person['BMI kg/m^2'] = 1.97 
+            tmp_mult.append(0)            
+        elif person['BMI kg/m^2'] >= 25 and person['BMI kg/m^2'] < 27.5:
+            tmp_mult.append(0.699)
+        elif person['BMI kg/m^2'] >= 27.5 and person['BMI kg/m^2'] < 30:
+            tmp_mult.append(1.97)
         else:
-             person['BMI kg/m^2'] = 2.518
+            tmp_mult.append(2.518)
 
-        #Family history
+        # Family history
         tmp_mult.append(1)
         if person['Family history'] == 0:
             person['Family history'] = 0
@@ -191,7 +69,7 @@ def normalize_diabetics_parameters(diabetic_patients):
         else:
             person['Family history'] = 0.753
 
-        #Smoking history
+        # Smoking history
         tmp_mult.append(1)
         if person['Smoking history'] == 0:
             person['Smoking history'] = 0.855
@@ -204,11 +82,12 @@ def normalize_diabetics_parameters(diabetic_patients):
         else:
             person['Diabetic'] = 0
     return diabetic_patients, multipliers
+
 # https://www.mdcalc.com/framingham-risk-score-hard-coronary-heart-disease#evidence
 def normalize_coronary_heart_parameters(coronary_heart_disease_patients):
     multipliers = []
-    male_mult = [52.00961,20.014077,-0.905964,1.305784,0.241549,12.096316,-4.605038,-2.84367,-2.93323]
-    female_mult = [31.764001,22.465206,-1.187731,2.552905,0.420251,13.07543,-5.060998,-2.996945]
+    male_mult = [52.00961, 20.014077, -0.905964, 1.305784, 0.241549, 12.096316, -4.605038, -2.84367, -2.93323]
+    female_mult = [31.764001, 22.465206, -1.187731, 2.552905, 0.420251, 13.07543, -5.060998, -2.996945]
     for x in coronary_heart_disease_patients:
         if x['Age'] == 0:
             # Male
@@ -217,6 +96,122 @@ def normalize_coronary_heart_parameters(coronary_heart_disease_patients):
             multipliers.append(female_mult)
 
     return coronary_heart_disease_patients, multipliers
+
+
+
+def get_relevant_data(reader):
+    diabetic_patients = []
+
+    # Diabetic data
+    age = 'x0_age'
+    bmi = 'x0an03a'
+    sex = 'x0_sex'
+    diabetes = 'x0md030'
+    antihypertensive_medication = 1  # random.randint(0,1)
+    prescribed_steroids = 1  # random.randint(0,1)
+    smoking = 'x0sm00'
+    family_history = 0.753  # random.choice([0,0.728,0.753])
+    date_of_birth = 'x0_birthd'
+    firstname = 'firstname'
+    lastname = 'lastname'
+
+    coronary_heart_disease_patients = []
+    total_cholesterol = 'x0lp16'
+    cholesterol_HDL = 'x0lp17'
+    systolic_BP = 'x0bp01'
+    treated_for_blood_pressure = 'x0bl02'
+    coronary_heart_disease = 'x0mi08'
+
+    for row in reader:
+
+        diabetic_patient_data = {
+            'Sex': int(row[sex]) - 1,
+            'Prescribed antihypertensive medication': antihypertensive_medication,
+            'Prescribed steroids': prescribed_steroids,
+            'Age': float(row[age]),
+            'BMI kg/m^2': float(row[bmi]),
+            'Family history': family_history,
+            'Smoking history': int(row[smoking]) - 1,
+            'Diabetic': int(row[diabetes]),
+            'Day of birth' : row[date_of_birth],
+            'Firstname' : row[firstname],
+            'Lastname' : row[lastname]
+        }
+
+        insert = True
+        for x in diabetic_patient_data.keys():
+            d = diabetic_patient_data[x]
+            if (isinstance(d, int) or isinstance(d, float))  and d < 0:
+                insert = False
+                break
+
+        if insert:
+            diabetic_patients.append(diabetic_patient_data)
+
+
+        coronary_heart_disease_patient_data = {
+            'Age': float(row[age]),
+            'Total cholesterol mg/dL': int(row[total_cholesterol]),
+            'HDL cholesterol mg/dL': int(row[cholesterol_HDL]),
+            'Systolic BP mm Hg': int(row[systolic_BP]),
+            'Blood pressure being treated with medicines': int(row[treated_for_blood_pressure]),
+            'Smoker': int(row[smoking]) - 1,
+            'Sex': int(row[sex]) - 1,
+            'Coronary heart disease': int(row[coronary_heart_disease]),
+            'ln(Age) x ln(Total cholesterol)': 0,
+            'ln(Age) x Smoker': 0,
+            'ln(Age) x ln(Age)': 0,
+            'Day of birth': row[date_of_birth],
+            'Firstname': row[firstname],
+            'Lastname': row[lastname]
+        }
+
+        insert = True
+        for x in coronary_heart_disease_patient_data.keys():
+            d = coronary_heart_disease_patient_data[x]
+            if (isinstance(d, int) or isinstance(d, float))  and d < 0:
+                insert = False
+                break
+        if insert:
+            if coronary_heart_disease_patient_data['Blood pressure being treated with medicines'] == 2:
+                coronary_heart_disease_patient_data['Blood pressure being treated with medicines'] = 0
+
+            if coronary_heart_disease_patient_data['Smoker'] == 2:
+                coronary_heart_disease_patient_data['Smoker'] = 0
+            else:
+                coronary_heart_disease_patient_data['Smoker'] = 1
+
+            coronary_heart_disease_patient_data['ln(Age) x Smoker'] = math.log(
+                coronary_heart_disease_patient_data['Age']) * coronary_heart_disease_patient_data['Smoker']
+
+            if coronary_heart_disease_patient_data['Age'] > 70 and coronary_heart_disease_patient_data['Sex'] == 0:
+                coronary_heart_disease_patient_data['ln(Age) x Smoker'] = math.log(70) * \
+                                                                          coronary_heart_disease_patient_data['Smoker']
+            if coronary_heart_disease_patient_data['Age'] > 78 and coronary_heart_disease_patient_data['Sex'] == 1:
+                coronary_heart_disease_patient_data['ln(Age) x Smoker'] = math.log(78) * \
+                                                                          coronary_heart_disease_patient_data['Smoker']
+
+            coronary_heart_disease_patient_data['Age'] = math.log(coronary_heart_disease_patient_data['Age'])
+            coronary_heart_disease_patient_data['Total cholesterol mg/dL'] = math.log(
+                coronary_heart_disease_patient_data['Total cholesterol mg/dL'])
+            coronary_heart_disease_patient_data['HDL cholesterol mg/dL'] = math.log(
+                coronary_heart_disease_patient_data['HDL cholesterol mg/dL'])
+            coronary_heart_disease_patient_data['Systolic BP mm Hg'] = math.log(
+                coronary_heart_disease_patient_data['Systolic BP mm Hg'])
+            coronary_heart_disease_patient_data['ln(Age) x ln(Total cholesterol)'] = \
+            coronary_heart_disease_patient_data['Age'] * coronary_heart_disease_patient_data['Total cholesterol mg/dL']
+
+            coronary_heart_disease_patient_data['ln(Age) x ln(Age)'] = coronary_heart_disease_patient_data['Age'] ** 2
+
+            coronary_heart_disease_patients.append(coronary_heart_disease_patient_data)
+
+    diabetic_patients, diabetic_multipliers = normalize_diabetics_parameters(diabetic_patients)
+
+    coronary_heart_disease_patients, coronary_heart_disease_multipliers = normalize_coronary_heart_parameters(
+        coronary_heart_disease_patients)
+
+    return diabetic_patients, diabetic_multipliers, coronary_heart_disease_patients, coronary_heart_disease_multipliers
+
 
 
 
@@ -245,25 +240,58 @@ if __name__ == '__main__':
     print("[+] Loaded knowledgebase")
     
     
-    '''
+    data = {}
+    person = k_diabetic_patients[0]
+    if person['Sex'] == 0:
+        person['Sex'] = 'Male'
+    else:
+        person['Sex'] = 'Female'
 
-    correct = 0
-    
-    for i in range(0,len(diabetic_patients)):
-        prob = mdcalc_probability_diabetes(diabetic_patients[i],diabetic_multipliers[i])
-        if (prob > 0.5 and diabetic_patients[i][-1] == 1) or (prob <= 0.5 and diabetic_patients[i][-1] == 0):
-            correct += 1
-    print(correct)
-    print(correct/len(diabetic_patients))
-    
-    
-    for i in range(0,len(coronary_heart_disease_patients)):
-        prob = mdcalc_probability_heart_disease(coronary_heart_disease_patients[i],coronary_heart_disease_multipliers[i])
-        print(prob,coronary_heart_disease_patients[i][-1])
-        if (prob > 0.5 and coronary_heart_disease_patients[i][-1] == 1) or (prob <= 0.5 and coronary_heart_disease_patients[i][-1] == 0):
-            correct += 1
-    print(correct)
-    print(correct/len(coronary_heart_disease_patients))
-    '''
+    if person['Prescribed antihypertensive medication'] == 0:
+        person['Prescribed antihypertensive medication'] = 'No'
+    else:
+        person['Prescribed antihypertensive medication'] = 'Yes'
+
+    if person['Prescribed steroids'] == 0:
+        person['Prescribed steroids'] = 'No'
+    else:
+        person['Prescribed steroids'] = 'Yes'
+
+    if person['Family history'] == 0:
+        person['Family history'] = 'No diabetic 1st-degree relative'
+    elif person['Family history'] == 0.728:
+        person['Family history'] = 'Parent or sibling with diabetes'
+    else:
+        person['Family history'] = 'Parent and sibling with diabetes'
+
+    if person['Smoking history'] == 0:
+        person['Smoking history'] = 'Non-smoker'
+    elif person['Smoking history'] == 0.728:
+        person['Smoking history'] = 'Ex-smoker'
+    else:
+        person['Smoking history'] = 'Current smoker'
+
+
+    data['info_diabetes'] = person
+    person = k_coronary_heart_disease_patients[0]
+    if person['Smoker'] == 0:
+        person['Smoker'] = 'Non-smoker'
+    else:
+        person['Smoker'] = 'Current smoker'
+
+    person['Age'] = math.e ** person['Age']
+    person['Total cholesterol mg/dL'] = math.e ** person['Total cholesterol mg/dL']
+    person['HDL cholesterol mg/dL'] = math.e ** person['HDL cholesterol mg/dL']
+
+    if person['Blood pressure being treated with medicines'] == 0:
+        person['Blood pressure being treated with medicines'] = 'No'
+    else:
+        person['Blood pressure being treated with medicines'] = 'Yes'
+
+    data['info_coronary_heart_disease'] = person
+    data['diabetes'] = 0.5
+    data['coronary_heart_disease'] = 0.7
+
+    print(data)
     #
     # print(coronary_heart_disease_patients, coronary_heart_disease_multipliers)
