@@ -14,8 +14,7 @@ from pathlib import Path
 import os
 import csv
 import math
-
-#from diagnoseasy.views import get_relevant_data
+import time
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -204,7 +203,7 @@ def get_relevant_data(reader):
 
     return diabetic_patients, diabetic_multipliers, coronary_heart_disease_patients, coronary_heart_disease_multipliers
 
-
+st = time.time()
 knowledge_base_csv = open(os.path.join(BASE_DIR, 'diagnoseasy/db/generated_variables.csv'), "r")
 
 kb_reader = csv.DictReader(knowledge_base_csv)
@@ -216,7 +215,7 @@ kb_diabetic_patients_list = [[person['Sex'], person['Prescribed antihypertensive
                               person['Prescribed steroids'], person['Age'], person['BMI kg/m^2'],
                               person['Family history'], person['Smoking history'], person['Diabetic']] for person in
                              kb_diabetic_patients]
-print(len(kb_diabetic_patients_list))
+
 kb_coronary_heart_disease_patients_list = [[person['Age'], person['Total cholesterol mg/dL'],
                                            person['HDL cholesterol mg/dL'], person['Systolic BP mm Hg'],
                                            person['Blood pressure being treated with medicines'],
@@ -224,7 +223,8 @@ kb_coronary_heart_disease_patients_list = [[person['Age'], person['Total cholest
                                            person['ln(Age) x Smoker'],
                                            person['Sex'], person['Coronary heart disease']] for person in
                                           kb_coronary_heart_disease_patients]
-
+et = time.time()
+print("Loading took: " , et-st)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
