@@ -1,8 +1,17 @@
+<ion-header *ngIf="platform.is('mobile')">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Results</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
 
   <ion-spinner *ngIf="!pageIsReady"></ion-spinner>
 
-  <div id="container" *ngIf="pageIsReady">
+  <div id="container" *ngIf="pageIsReady && !platform.is('mobile')">
     <ion-card>
       <ion-card-header>
         <ion-card-title>DiagnosEasy</ion-card-title>
@@ -42,4 +51,49 @@
       </ion-item>
     </ion-list>
   </div>
+
+  <div id="mobile" *ngIf="pageIsReady && platform.is('mobile')">
+
+    <ion-card class="acrylic">
+      <!--<ion-img src="../assets/download.png" alt="Immagine paziente"></ion-img>-->
+      <ion-card-header>
+        <ion-card-title>Nome Cognome paziente</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ul>
+          <li>Età: </li>
+          <li>Sesso: </li>
+          <li>Data di nascita: </li>
+        </ul>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="acrylic">
+
+      <ion-list>
+        <ion-list-header style="font-size: 1.5em;">Lista di possibili patologie rilevate</ion-list-header>
+        <ion-item lines="full">
+          <ion-label>
+            Rischio di diabete:
+            <ion-progress-bar value="0.5"></ion-progress-bar>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label>
+            Rischio di cancro:
+            <ion-progress-bar value="0.6"></ion-progress-bar>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label>
+            Rischio di morire:
+            <ion-progress-bar value="0.8"></ion-progress-bar>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+    </ion-card>
+
+  </div>
+
 </ion-content>

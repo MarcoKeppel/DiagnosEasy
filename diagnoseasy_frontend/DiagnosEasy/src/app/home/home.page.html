@@ -1,15 +1,22 @@
-<ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>DiagnosEasy</ion-card-title>
-    </ion-card-header>
-  </ion-card>
+<ion-header *ngIf="platform.is('mobile')">
+  <ion-toolbar color="primary">
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <div id="container">
+<ion-content [fullscreen]="true">
+
+  <div id="container" *ngIf="!platform.is('mobile')">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>DiagnosEasy</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
     <form
       [formGroup]="cfForm"
       (ngSubmit)="onSubmit()"
-      action="/results"
       class="ion-padding">
       <ion-item lines="none" class="ion-padding">
         <ion-label position="floating">Codice Fiscale: </ion-label>
@@ -18,4 +25,28 @@
       <ion-button type="submit" size="large" strong="true" class="ion-padding" color="secondary">Cerca</ion-button>
     </form>
   </div>
+
+  <div id="mobile" *ngIf="platform.is('mobile')">
+
+    <ion-card class="acrylic">
+      <ion-card-header>
+        <ion-card-title>DiagnosEasy</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card class="acrylic">
+      <form
+        [formGroup]="cfForm"
+        (ngSubmit)="onSubmit()"
+        class="ion-padding">
+        <ion-item class="ion-padding">
+          <ion-label position="floating">Codice Fiscale: </ion-label>
+          <ion-input id="cf" formControlName="cf"></ion-input>
+        </ion-item>
+        <ion-button expand="block" type="submit" strong="true" class="ion-padding" color="secondary">Cerca</ion-button>
+      </form>
+    </ion-card>
+
+  </div>
+
 </ion-content>

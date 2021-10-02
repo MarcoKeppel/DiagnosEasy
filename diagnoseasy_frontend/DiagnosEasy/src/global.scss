@@ -28,3 +28,11 @@
 ion-content{
     --background: #e0f7fa;
 }
+
+#mobile {
+
+  ion-card.acrylic {
+
+    background-color: rgba($color: #ffffff, $alpha: 0.3);
+  }
+}
