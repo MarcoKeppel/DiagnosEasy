@@ -6,10 +6,14 @@
   </ion-card>
 
   <div id="container">
-    <form class="ion-padding">
+    <form
+      [formGroup]="cfForm"
+      (ngSubmit)="onSubmit()"
+      action="/results"
+      class="ion-padding">
       <ion-item lines="none" class="ion-padding">
         <ion-label position="floating">Codice Fiscale: </ion-label>
-        <ion-input></ion-input>
+        <ion-input id="cf" formControlName="cf"></ion-input>
       </ion-item>
       <ion-button type="submit" size="large" strong="true" class="ion-padding" color="secondary">Cerca</ion-button>
     </form>

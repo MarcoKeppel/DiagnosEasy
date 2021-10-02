@@ -8,17 +8,19 @@ import { Observable } from 'rxjs';
 })
 export class BackendCommunicationService {
 
+  public cf;
+
   constructor(
     public http: HttpClient,
   ) { }
 
-  getInfo(cf: string): Observable<any> {
+  getInfo(): Observable<any> {
 
     let body = {
-      'cf': cf
+      'cf': this.cf
     };
 
-    return this.http.post<any>(environment.apiUrl + 'ssn/get_cf', JSON.stringify(body));
+    return this.http.post<any>(environment.apiUrl + 'ssn/get_info', JSON.stringify(body));
   }
 
   getCorrelations(info) {
@@ -27,6 +29,6 @@ export class BackendCommunicationService {
       'info': info
     };
 
-    return this.http.post<any>(environment.apiUrl + 'ssn/get_correlations', JSON.stringify(body));
+    return this.http.post<any>(environment.apiUrl + 'diagnoseasy/get_correlations', JSON.stringify(body));
   }
 }

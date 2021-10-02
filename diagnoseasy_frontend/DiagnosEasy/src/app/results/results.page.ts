@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendCommunicationService } from '../services/backend-communication.service';
 
 @Component({
   selector: 'app-results',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultsPage implements OnInit {
 
-  constructor() { }
+  pageIsReady = false;
+  results = [];
+
+  constructor(
+    public backend: BackendCommunicationService,
+  ) { }
 
   ngOnInit() {
+
+    this.backend.getInfo().subscribe(info => {
+
+      this.backend.getCorrelations(info).subscribe(result => {
+
+        this.results = result;
+
+        this.pageIsReady = true;
+
+      });
+    });
   }
 
 }

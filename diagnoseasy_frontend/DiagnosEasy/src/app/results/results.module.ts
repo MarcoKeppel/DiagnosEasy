@@ -13,7 +13,7 @@ import { ResultsPage } from './results.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ResultsPageRoutingModule
+    ResultsPageRoutingModule,
   ],
   declarations: [ResultsPage]
 })

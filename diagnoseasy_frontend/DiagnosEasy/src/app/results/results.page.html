@@ -1,5 +1,8 @@
 <ion-content [fullscreen]="true">
-  <div id="container">
+
+  <ion-spinner *ngIf="!pageIsReady"></ion-spinner>
+
+  <div id="container" *ngIf="pageIsReady">
     <ion-card>
       <ion-card-header>
         <ion-card-title>DiagnosEasy</ion-card-title>
@@ -25,14 +28,17 @@
       <ion-item lines="full">
         <a>Rischio di diabete:</a>
         <a class="rischio">481</a>
+        <ion-progress-bar value="0.5"></ion-progress-bar>
       </ion-item>
       <ion-item lines="full">
         <a>Rischio di cancro:</a>
         <a class="rischio">481</a>
+        <ion-progress-bar value="0.6"></ion-progress-bar>
       </ion-item>
       <ion-item lines="full">
         <a>Rischio di morire:</a>
         <a class="rischio">481</a>
+        <ion-progress-bar value="0.8"></ion-progress-bar>
       </ion-item>
     </ion-list>
   </div>
