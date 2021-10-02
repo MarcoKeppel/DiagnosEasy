@@ -16,18 +16,18 @@
       <br>
       <img src="/../assets/imgs/person.jpeg" alt="Immagine paziente">
       <ion-card-header>
-        <ion-card-title>Hikaru Nakamura</ion-card-title>
+        <ion-card-title>{{name}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ul>
-          <li><strong>Età: </strong>  </li>
-          <li><strong>Sesso: </strong>: Maschio</li>
-          <li><strong>Data di nascita: </strong></li>
+          <li><strong>Età: </strong> </li>
+          <li><strong>Sesso: </strong>: {{gender}}</li>
+          <li><strong>Data di nascita: </strong>{{birthday}}</li>
         </ul>
       </ion-card-content>
     </ion-card>
 
-    <ion-scroll scrollY="true">
+    <div class="scroll">
       <section class="disease-section">
         <ion-card class="transparent-bg diseases" style="float: right;" (click)="toggleCard(0)">
           <ion-card-header>
@@ -124,7 +124,7 @@
           </ion-card-content>
         </ion-card>
       </section>
-    </ion-scroll>
+    </div>
 
   </div>
 

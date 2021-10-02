@@ -153,10 +153,14 @@ ion-card-title{
   text-align: left;
 }
 
-ion-scroll{
+.scroll{
   width: 60vw;
   display: block;
   overflow-y: scroll;
   max-height: 70vh;
   padding-right: 2vw;
+}
+
+.disease-section ion-card{
+  display: block;
 }

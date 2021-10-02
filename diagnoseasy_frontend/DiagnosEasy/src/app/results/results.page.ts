@@ -12,6 +12,9 @@ export class ResultsPage implements OnInit {
   pageIsReady = true;
   results = [];
   openCards = [false];
+  name : string;
+  birthday : string;
+  gender: string
 
   constructor(
     public platform: Platform,
@@ -27,11 +30,14 @@ export class ResultsPage implements OnInit {
 
          this.pageIsReady = true;
          console.log(this.results)
-         let obj = JSON.parse("{}");
-         let diabetes_data = JSON.parse(obj.info_diabetes);
-         let info_coronary_heart_disease_data = JSON.parse(obj.info_coronary_heart_disease);
-         let diabetes_percentile = obj.diabetes;
-         let heart_disease = obj.coronary_heart_disease;
+         console.log(this.results["info_coronary_heart_disease"]["Firstname"])
+         this.name = this.results["info_coronary_heart_disease"]["Firstname"] + " " + this.results["info_coronary_heart_disease"]["Lastname"]
+         this.birthday = this.results["info_coronary_heart_disease"]["Day of birth"];
+         this.gender = this.results["info_coronary_heart_disease"]["Gender"];
+         //let diabetes_data = JSON.parse(obj.info_diabetes);
+         //let info_coronary_heart_disease_data = JSON.parse(obj.info_coronary_heart_disease);
+         //let diabetes_percentile = obj.diabetes;
+         //let heart_disease = obj.coronary_heart_disease;
 
        });
      });
