@@ -56,7 +56,7 @@ export class ResultsPage implements OnInit {
 
          this.name = this.results["info_coronary_heart_disease"]["Firstname"] + " " + this.results["info_coronary_heart_disease"]["Lastname"]
 
-         this.age = this.results["info_coronary_heart_disease"]["Age"];
+         this.age = parseInt(this.results["info_coronary_heart_disease"]["Age"]);
          this.birthday = this.results["info_coronary_heart_disease"]["Day of birth"];
          this.gender = this.results["info_coronary_heart_disease"]["Sex"];
          this.day_of_birth = this.results["info_coronary_heart_disease"]["Day of birth"];
@@ -68,8 +68,8 @@ export class ResultsPage implements OnInit {
          this.total_cholesterol = this.results["info_coronary_heart_disease"]["Total cholesterol mg/dL"];
          this.total_cholesterol = Math.round(this.total_cholesterol * 100) / 100;
 
-         this.diabetes_likelyhood = this.results["diabetes"] / 100
-         this.coronary_heart_disease_likelyhood = this.results["coronary_heart_disease"] / 100;
+         this.diabetes_likelyhood = parseInt(this.results["diabetes"]) / 100;
+         this.coronary_heart_disease_likelyhood = parseInt(this.results["coronary_heart_disease"]) / 100;
          this.bmi = this.results["info_diabetes"]["BMI kg/m^2"];
          this.family_history = this.results["info_diabetes"]["Family history"];
          this.antihypertensive_medication = this.results["info_diabetes"]["Prescribed antihypertensive medication"];
