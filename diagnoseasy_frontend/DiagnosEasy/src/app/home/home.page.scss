@@ -4,7 +4,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 50%;
+  top: 30%;
   transform: translateY(-50%);
   width: 50%;
   margin: auto;
@@ -29,9 +29,10 @@
 }
 
 ion-item {
-  --border-color: #14cba8;
+  --border-color: #aec4c7;
   --border-width: 8px;
   --border-radius: 8px;
+  --border-style: ridge;
 }
 
 ion-card{
@@ -42,4 +43,8 @@ ion-card{
 
 ion-button{
   padding: 5px;
+}
+
+ion-input{
+  text-align: center;
 }
