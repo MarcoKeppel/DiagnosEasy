@@ -84,3 +84,79 @@ ion-spinner {
   margin: auto;
   margin-top: 30vh;
 }
+
+.background-img{
+  --background: url("/../assets/imgs/bg.jpg") no-repeat;
+  background-size: 100% auto;
+}
+
+.transparent-bg{
+  //opacity: 80%;
+  background: rgba(255, 255, 255, .8)
+}
+
+ion-header{
+  opacity: 100%;
+}
+
+img{
+  margin-top: 2vh;
+  max-width: 12vw;
+  max-height: 12vw;
+  margin:auto;
+  border-radius: 100px;
+}
+
+.title{
+  font-family: 'Righteous', cursive;
+  font-size: 6rem;
+}
+
+.title-spacer{
+  display: block;
+  content: "";
+  margin-top: 10vh;
+}
+
+.diseases{
+  width: 55vw;
+  cursor: pointer;
+  padding-bottom: 2vh;
+}
+
+ion-progress-bar{
+  height: 10px;
+  --color: "red"
+}
+
+.disease-section{
+  //overflow-y: scroll;
+  //scroll-behavior: smooth;
+}
+
+.disease-section * ion-card-title{
+    text-align: left;
+}
+
+ion-card-header{
+  padding-bottom: 0;
+}
+
+ion-card-content{
+  font-size: 1.2rem;
+}
+
+ion-card-title{
+  font-size: 1.4rem;
+}
+.align-left{
+  text-align: left;
+}
+
+ion-scroll{
+  width: 60vw;
+  display: block;
+  overflow-y: scroll;
+  max-height: 70vh;
+  padding-right: 2vw;
+}
